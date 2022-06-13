@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet"> 
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+</head>
+<body>
+      <div class="row">
+        <div class="col-sm-2 menu">
+            <h1> <i class="bi bi-umbrella-fill"></i> Weather</h1>
+            <ul>
+               <li class="bt" data-aos="zoom-in-up"><i class="bi bi-archive-fill active"  ></i><a href="#Dachboard">Dachboard</a></li>
+               <li class="bt" data-aos="zoom-in-up"><i class="bi bi-geo-alt-fill" ></i><span>Map</span></li> 
+               <li class="bt" data-aos="zoom-in-up"><i class="bi bi-heart-fill" ></i>Saved Location</li> 
+               <li class="bt" data-aos="zoom-in-up"><i class="bi bi-calendar-date-fill" ></i>Calendar</li> 
+               <li class="bt" data-aos="zoom-in-up"><i class="bi bi-gear-fill" ></i>Setting</li> 
+               <li class="bt" data-aos="zoom-in-up"><span>lOG-OUT</span><i class="bi bi-box-arrow-left" ></i></li> 
+
+            </ul>
+        </div>
+        <div class="col-sm-7" id="Dachboard">
+            <div class="row">
+                <div class="col-sm-10">
+                    <input type="text" placeholder="Enter Your City" class="txt"  id="cityinput">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" value="Search" class="btn" id="add">
+                </div>
+            </div>
+            <article class="Card">
+                <div class="circle"><i class="bi bi-brightness-high-fill"></i></div>
+                <div class="circle"><i class="bi bi-brightness-high-fill"></i></div>
+                <div class="card-inner">
+                    <div class="row">
+                        <div class="col-sm-10 weather loading">
+                            <h2 id="cityoutput"></h2>
+                            <hr>
+                            <h1 id="description"></h1>
+                            <h1 id="temp"></h1>
+                            <h1 id="wind"></h1>
+                         </div>
+                         <div class="col-sm-2 weather-icon">
+                            <img src="/assets/icons/unknown.png" />
+                        </div>
+                    </div>
+                </div>
+            </article>  
+        </div>
+        <div class="col-sm-3 menu-right">
+            <ul class="header">
+                <li data-aos="fade-right">
+                    <i class="bi bi-caret-left-fill"></i>
+                </li>
+                <li>
+                    <h1 data-aos="zoom-in">this week</h1>
+                </li>
+                <li data-aos="fade-left">
+                    <i class="bi bi-caret-right-fill"></i>
+                </li>
+            </ul>
+
+            <table>
+                <tr class="bt" data-aos="fade-right">
+                    <td>
+                        <h1 id="day">Today</h1>
+                        <p id="month"></p>
+                    </td>
+                    <td><span>15</span></td>
+                    <td><i class="bi bi-cloud-hail-fill"></i></td>
+                </tr>
+                <tr class="bt" data-aos="fade-left">
+                    <td>
+                        <h1 id="day1"></h1>
+                        <p id="month1"></p>
+                    </td>
+                    <td><span>20</span></td>
+                    <td><i class="bi bi-cloud-fog2"></i></td>
+                </tr>
+                <tr class="bt"data-aos="fade-right">
+                    <td>
+                        <h1 id="day2"></h1>
+                        <p id="month2"></p>
+                    </td>
+                    <td><span>25</span></td>
+                    <td><i class="bi bi-brightness-high-fill"></i></td>
+                </tr>
+                <tr class="bt"data-aos="fade-left">
+                    <td>
+                        <h1 id="day3"></h1>
+                        <p id="month3"></p>
+                    </td>
+                    <td><span>15</span></td>
+                    <td><i class="bi bi-cloud-moon-fill"></i></td>
+                </tr>
+                <tr class="bt" data-aos="fade-right">
+                    <td>
+                        <h1 id="day4"></h1>
+                        <p id="month4"></p>
+                    </td>
+                    <td><span>15</span></td>
+                    <td><i class="bi bi-cloud-moon-fill"></i></td>
+                </tr>
+            </table>
+        </div>
+      </div>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
