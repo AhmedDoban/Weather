@@ -214,7 +214,7 @@
     height: 200px;
     border-radius: 50%;
     position: absolute;
-    animation: move-up .9s ease-in infinite alternate-reverse;
+    animation: move-up .9s ease-in-out infinite alternate-reverse;
 }
 .circle:nth-child(1){
     top: 40px;
