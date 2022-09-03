@@ -1,0 +1,219 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  transition: all 0.3s linear;
+}
+/*ــــــــــــــــــــــــــــــــــــــــــــــ
+  card menu
+ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
+.card {
+  background-image: url("../img/home.jpg");
+  width: 100%;
+  height: 100vh;
+  background-position: bottom;
+  background-size: cover;
+  position: relative;
+}
+.card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+}
+.card .container {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  display: flex;
+  height: 100vh;
+}
+.card .left {
+  position: relative;
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
+  flex-direction: row;
+  color: #fff;
+}
+.card .left .data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card .left .data .temp {
+  font-size: 100px;
+  margin: 50px;
+}
+.card .left .data .cityoutput h1 {
+  width: fit-content;
+  text-transform: capitalize;
+  font-size: 30px;
+  color: rgb(209, 209, 209);
+  letter-spacing: 5px;
+}
+.card .left .data #cityoutput span {
+  display: block;
+  margin-top: 5px;
+  color: #777;
+}
+.card .right {
+  position: relative;
+  flex-basis: 30%;
+  color: #777;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.7 ease-in-out;
+}
+.card .right .input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card .right input {
+  flex-basis: 100%;
+  padding: 20px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #777;
+  color: rgb(4, 142, 247);
+  font-size: 25px;
+  caret-color: rgb(4, 142, 247);
+  transition: all 0.7 ease-in-out;
+  height: 70px;
+  max-width: 100%;
+}
+.card .right input:focus {
+  outline: none;
+  transition: all 1.7 ease-in-out;
+}
+.card .right input:focus::placeholder {
+  opacity: 0;
+  transition: all 1.7 ease-in-out;
+}
+.card .right input::placeholder {
+  color: #fff;
+}
+.card .right button {
+  position: absolute;
+  padding: 10px 10px;
+  border-radius: 50%;
+  right: 40px;
+  border: none;
+  font-size: 15px;
+  background-color: rgb(135, 135, 135);
+  color: #fff;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.card .right button:hover {
+  background-color: rgb(4, 142, 247);
+}
+@media (max-width: 768px) {
+  .card .container {
+    flex-direction: column-reverse;
+  }
+  .card .right,
+  .card .left {
+    background-color: transparent;
+  }
+  .card .left .data {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.weather-details h1:nth-child(1) {
+  text-align: center;
+  color: rgb(4, 142, 247);
+  padding: 20px;
+}
+.weather-details h1:not(:first-child) {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #777;
+}
+
+/*ــــــــــــــــــــــــــــــــــــــــــــــ
+  tost container
+ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: rgba(111, 105, 105, 0.395);
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 50%;
+  font-size: 17px;
+  border-radius: 50px;
+}
+@media (max-width: 776px) {
+  #snackbar {
+    font-size: 15px;
+  }
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 50%;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 50%;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 50%;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
