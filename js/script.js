@@ -6,7 +6,7 @@ var temp = document.querySelector("#temp");
 var wind = document.querySelector("#wind");
 var hum = document.querySelector("#humidity");
 var error = document.querySelector("#snackbar");
-
+var weather_details = document.querySelector(".weather-details");
 var locationIcon = document.querySelector(".weather-icon");
 apik = "118d349a7305ac6c68aabac02ca9c657";
 
@@ -31,16 +31,17 @@ btn.addEventListener("click", function () {
       var tempature = data["main"]["temp"];
       var humidity = data["main"]["humidity"];
       var wndspd = data["wind"]["speed"];
-
       const icon = data["weather"]["0"]["icon"];
 
       city.innerHTML = `<h1>${nameval}</h1> <span>${day.getHours()}:${day.getMinutes()} - ${day.getDate()}-${day.getMonth()}-${day.getFullYear()} </span>`;
       temp.innerHTML = `<span>${convertion(tempature)}  &#176;</span>`;
       description.innerHTML = `<p>Sky Conditions </p> <span>${descrip}<span>`;
       wind.innerHTML = `Wind Speed <span>${wndspd} km/h<span>`;
-      hum.innerHTML = `<p>humidity</p> ${humidity}%`;
-
+      hum.innerHTML = `<p>humidity</p> <span> ${humidity} % <span>`;
+      locationIcon.style.cssText = "display :block";
       locationIcon.innerHTML = `<img src="/icons/${icon}.png">`;
+
+      weather_details.style.cssText = "display:block";
     })
 
     .catch(
@@ -53,4 +54,3 @@ btn.addEventListener("click", function () {
       }, 3000)
     );
 });
-
