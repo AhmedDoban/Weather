@@ -125,12 +125,14 @@ body {
 ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
 .data-container {
   position: relative;
-  background-color: #19324fc2;
+  background: rgba(135, 103, 124, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15.7px);
   width: 100%;
   min-height: 30vh;
-  backdrop-filter: blur(15px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  overflow: hidden;
 }
 
 .data-container .box {
@@ -172,7 +174,7 @@ body {
 }
 @media (max-width: 768px) {
   .data-container {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
   .data-container .box:first-child h1 {
     font-size: 35px;
