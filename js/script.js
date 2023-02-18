@@ -6,19 +6,18 @@ var temp = document.querySelector("#temp");
 var wind = document.querySelector("#wind");
 var hum = document.querySelector("#humidity");
 var locationIcon = document.querySelector(".weather-icon .imgIcon");
-apik = "118d349a7305ac6c68aabac02ca9c657";
-
+apiWeatherkey = "118d349a7305ac6c68aabac02ca9c657";
 // Get location of the user
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.watchPosition(showPosition);
   }
 }
 // Get position of the user
 function showPosition(position) {
-  let x = position.coords.latitude;
-  let y = position.coords.longitude;
-  let Api = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${x}&longitude=${y}`;
+  let Latitude = position.coords.latitude;
+  let Longitude = position.coords.longitude;
+  let Api = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${Latitude}&longitude=${Longitude}`;
   FeachLocationApi(Api);
 }
 // call api to get the city
@@ -45,7 +44,7 @@ function FeachWeatherApi() {
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       inputval.value +
       "&appid=" +
-      apik
+      apiWeatherkey
   )
     .then((res) => res.json())
     .then((data) => {
