@@ -1,56 +1,58 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/normalize.css" rel="stylesheet" />
-    <meta content="Weather" name="description" />
-    <meta content="Weather" name="keywords" />
-    <link href="icons/01d.png" rel="icon" />
-    <script
-      src="https://kit.fontawesome.com/e39d260dfe.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div class="card">
-      <div class="container">
-        <!--left-->
-        <div class="left">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/normalize.css" rel="stylesheet" />
+  <meta content="Weather" name="description" />
+  <meta content="Weather" name="keywords" />
+  <link href="icons/01d.png" rel="icon" />
+</head>
+
+<body onload="getLocation();">
+  <div class=" home">
+    <div class="container">
+      <div class="search">
+        <div class="search-container">
+          <button class="btn-search" id="add">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <input type="search" placeholder="City Name ? " class="input-search" id="cityinput"
+            onkeypress="FeachWeatherApi()" />
+        </div>
+      </div>
+
+      <div class="data-container">
+        <div class="box">
           <div class="data">
             <h1 id="temp" class="temp"></h1>
-            <h2 id="cityoutput" class="cityoutput"></h2>
-            <div class="weather-icon">
-              <img src="icons/unknown.png" />
-            </div>
+            <p id="cityoutput"></p>
+          </div>
+          <div class="weather-icon">
+            <img src="icons/unknown.png" />
           </div>
         </div>
-        <!--right-->
-        <div class="right">
-          <div class="input">
-            <input
-              type="text"
-              placeholder="Enter Your City"
-              class="txt"
-              id="cityinput"
-            />
-            <button class="btn" id="add">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </div>
-
-          <div class="weather-details">
-            <h1>Weather Details</h1>
-            <h1 id="description"></h1>
-            <h1 id="wind"></h1>
-            <h1 id="humidity"></h1>
-          </div>
+        <div class="box">
+          <h1>Sky Conditions <i class="fa-solid fa-cloud-moon-rain"></i></h1>
+          <p id="description"></p>
         </div>
-        <div id="snackbar">Some text some message..</div>
+        <div class="box">
+          <h1>Wind Speed <i class="fa-solid fa-wind"></i></h1>
+          <p id="wind"></p>
+        </div>
+        <div class="box">
+          <h1>Humidity <i class="fa-brands fa-skyatlas"></i></h1>
+          <p id="humidity"></p>
+        </div>
       </div>
     </div>
-    <script src="js/script.js"></script>
-  </body>
+  </div>
+  <!------------------  Script ------------------->
+  <script src="js/script.js"></script>
+  <script src="https://kit.fontawesome.com/e39d260dfe.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

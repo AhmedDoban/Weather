@@ -5,24 +5,38 @@ var descrip = document.querySelector("#description");
 var temp = document.querySelector("#temp");
 var wind = document.querySelector("#wind");
 var hum = document.querySelector("#humidity");
-var error = document.querySelector("#snackbar");
-var weather_details = document.querySelector(".weather-details");
 var locationIcon = document.querySelector(".weather-icon");
 apik = "118d349a7305ac6c68aabac02ca9c657";
 
-// date
-let day = new Date();
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+}
+function showPosition(position) {
+  let x = position.coords.latitude;
+  let y = position.coords.longitude;
+  let Api = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${x}&longitude=${y}`;
+  FeachLocationApi(Api);
+}
+function FeachLocationApi(Api) {
+  fetch(Api)
+    .then((res) => res.json())
+    .then((data) => (inputval.value = data.city));
+  FeachWeatherApi();
+}
+
+
 //kelvin to celcious. 1 Kelvin is equal to -272.15 Celsius.
 function convertion(val) {
   return (val - 273).toFixed(0);
 }
-
-function date_hours(day) {
-  let hours = day.getHours();
-  hours % 12 == 0 ? hours : (hours -= 12);
-  return hours;
-}
 btn.addEventListener("click", function () {
+  FeachWeatherApi();
+});
+
+// weather Feach APi
+function FeachWeatherApi() {
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       inputval.value +
@@ -38,26 +52,11 @@ btn.addEventListener("click", function () {
       var wndspd = data["wind"]["speed"];
       const icon = data["weather"]["0"]["icon"];
 
-      city.innerHTML = `<h1>${nameval}</h1> <span>${date_hours(
-        day
-      )}:${day.getMinutes()} &nbsp; ${day.getDate()}-${day.getMonth()}-${day.getFullYear()} </span>`;
-      temp.innerHTML = `<span>${convertion(tempature)}  &#176;</span>`;
-      description.innerHTML = `<p>Sky Conditions </p> <span>${descrip}<span>`;
-      wind.innerHTML = `Wind Speed <span>${wndspd} km/h<span>`;
-      hum.innerHTML = `<p>humidity</p> <span> ${humidity} % <span>`;
-      locationIcon.style.cssText = "display :block";
+      city.innerHTML = `${nameval}`;
+      temp.innerHTML = `${convertion(tempature)}  &#176;`;
+      description.innerHTML = `${descrip}`;
+      wind.innerHTML = `${wndspd} km/h`;
+      hum.innerHTML = `${humidity} % `;
       locationIcon.innerHTML = `<img src="/icons/${icon}.png">`;
-
-      weather_details.style.cssText = "display:block";
-    })
-
-    .catch(
-      (err) => (
-        (error.className = "show"),
-        (error.innerHTML = "You entered Wrong city name")
-      ),
-      setTimeout(function () {
-        error.className = error.className.replace("show", "");
-      }, 3000)
-    );
-});
+    });
+}

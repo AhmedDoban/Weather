@@ -3,227 +3,188 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  --main-transition: all 0.5s ease-in-out;
+  --main-color: #19324f;
+}
 body {
   transition: all 0.3s linear;
 }
-/*ــــــــــــــــــــــــــــــــــــــــــــــ
-  card menu
-ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
-.card {
-  background-image: url("../img/home.jpg");
+.toastify {
+  max-width: calc(50% - 30px) !important;
   width: 100%;
-  height: 100vh;
-  background-position: bottom;
-  background-size: cover;
-  position: relative;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
 }
-.card::before {
+@media (max-width: 768px) {
+  .toastify {
+    max-width: calc(100% - 30px) !important;
+    width: 100%;
+  }
+}
+/*ــــــــــــــــــــــــــــــــــــــــــــــ
+ # Home
+ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
+.home {
+  position: relative;
+  background-image: url("../img/mountain.jpg");
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+.home::before {
   position: absolute;
   content: "";
+  background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
   top: 0;
   left: 0;
 }
-.card .container {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: relative;
+.home .container {
   display: flex;
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.card .left {
+/*ــــــــــــــــــــــــــــــــــــــــــــــ
+ # Home search-container
+ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
+.home .search {
   position: relative;
-  flex-basis: 70%;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: flex-end;
-  flex-direction: row;
-  color: #fff;
-}
-.card .left .data {
+  width: 100%;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.card .left .data .temp {
-  font-size: 100px;
-  margin: 50px;
-  color: rgb(85, 147, 129);
+.search-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
-.card .left .data .cityoutput h1 {
+.search-container {
   width: fit-content;
-  text-transform: capitalize;
-  font-size: 30px;
-  color: rgb(209, 209, 209);
-  letter-spacing: 5px;
-}
-.card .left .data #cityoutput span {
-  display: block;
-  margin-top: 5px;
-  color: #777;
-}
-.card .right {
+  height: fit-content;
   position: relative;
-  flex-basis: 30%;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: all 0.7 ease-in-out;
 }
-.card .right .input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.card .right input {
-  flex-basis: 100%;
-  padding: 20px;
-  border: none;
-  background-color: transparent;
-  border-bottom: 1px solid rgba(255, 254, 254, 0.477);
-  color: #eee;
-  font-size: 25px;
-  caret-color: rgb(4, 142, 247);
-  transition: all 0.7 ease-in-out;
-  height: 70px;
-  max-width: 100%;
-}
-.card .right input:focus {
+.search-container .input-search {
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
   outline: none;
-  transition: all 1.7 ease-in-out;
-}
-.card .right input:focus::placeholder {
-  opacity: 0;
-  transition: all 1.7 ease-in-out;
-}
-.card .right input::placeholder {
+  border-radius: 25px;
+  transition: var(--main-transition);
+  background-color: var(--main-color);
+  padding-right: 40px;
   color: #fff;
 }
-.card .right button {
-  position: absolute;
-  padding: 10px 10px;
+.search-container .input-search::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.search-container .btn-search {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
   border-radius: 50%;
-  right: 40px;
-  border: none;
-  font-size: 15px;
-  background-color: rgb(42, 44, 53);
-  color: #fff;
-  text-transform: uppercase;
-  width: fit-content;
+  position: absolute;
+  right: 0px;
+  color: #ffffff;
+  background-color: transparent;
+  pointer-events: painted;
 }
-.card .right button:hover {
-  background-color: rgb(4, 142, 247);
+.search-container .btn-search:focus ~ .input-search {
+  width: 400px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.search-container .input-search:focus {
+  width: 400px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+/*ــــــــــــــــــــــــــــــــــــــــــــــ
+ # Home data-container
+ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
+.data-container {
+  position: relative;
+  background-color: #19324fc2;
+  width: 100%;
+  min-height: 30vh;
+  backdrop-filter: blur(15px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.data-container .box {
+  width: 100%;
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.data-container .box:not(:last-child) {
+  border-right: 1px solid #111111;
+}
+.data-container .box:first-child h1 {
+  font-size: 80px;
+  color: #fff;
+  margin: 0;
+}
+.data-container .box:first-child p {
+  color: #ddd;
+  font-size: 25px;
+}
+.data-container .box:first-child img {
+  width: 100px;
+  height: 100px;
+}
+.data-container .box:not(:first-child) {
+  flex-direction: column;
+}
+.data-container .box h1 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+}
+.data-container .box p {
+  color: #ddd;
+  font-size: 25px;
 }
 @media (max-width: 768px) {
-  .card .container {
-    flex-direction: column-reverse;
+  .data-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-  .card .right,
-  .card .left {
-    background-color: transparent;
+  .data-container .box:first-child h1 {
+    font-size: 35px;
   }
-  .card .left .data {
-    flex-direction: row;
-    flex-wrap: wrap;
+  .data-container .box:first-child img {
+    width: 55px;
+    height: 55px;
   }
-}
-.weather-details h1:nth-child(1) {
-  text-align: center;
-  color: rgb(85, 147, 129);
-  padding: 20px;
-}
-.weather-details h1:not(:first-child) {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(119, 119, 119, 0.464);
-  font-size: 25px;
-  color: rgb(92, 101, 141);;
-}
-.weather-details h1:not(:first-child) span{
-  color: #fff;
-  font-size: 20px;
-}
-.weather-details,
-.weather-icon {
-  display: none;
-}
-
-/*ــــــــــــــــــــــــــــــــــــــــــــــ
-  tost container
-ــــــــــــــــــــــــــــــــــــــــــــــــــ*/
-
-#snackbar {
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: rgba(111, 105, 105, 0.395);
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  left: 50%;
-  bottom: 50%;
-  font-size: 17px;
-  border-radius: 50px;
-}
-@media (max-width: 776px) {
-  #snackbar {
-    font-size: 15px;
+  .data-container .box:first-child p {
+    font-size: 18px;
   }
-}
-
-#snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 50%;
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 50%;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 50%;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 50%;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
+  .data-container .box {
+    border-bottom: 1px solid #111111;
   }
 }
