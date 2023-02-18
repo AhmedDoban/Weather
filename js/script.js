@@ -24,7 +24,7 @@ function showPosition(position) {
 function FeachLocationApi(Api) {
   fetch(Api)
     .then((res) => res.json())
-    .then((data) => (inputval.value = data.city));
+    .then((data) => (inputval.value = data.locality));
   FeachWeatherApi();
 }
 
