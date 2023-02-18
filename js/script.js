@@ -40,6 +40,7 @@ btn.addEventListener("click", function () {
 
 // weather Feach APi
 function FeachWeatherApi() {
+  getLocation();
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       inputval.value +
@@ -65,5 +66,5 @@ function FeachWeatherApi() {
 }
 
 window.addEventListener("load", (event) => {
-  getLocation();
+  FeachWeatherApi();
 });
