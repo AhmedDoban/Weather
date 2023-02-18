@@ -5,20 +5,23 @@ var descrip = document.querySelector("#description");
 var temp = document.querySelector("#temp");
 var wind = document.querySelector("#wind");
 var hum = document.querySelector("#humidity");
-var locationIcon = document.querySelector(".weather-icon");
+var locationIcon = document.querySelector(".weather-icon .imgIcon");
 apik = "118d349a7305ac6c68aabac02ca9c657";
 
+// Get location of the user
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
 }
+// Get position of the user
 function showPosition(position) {
   let x = position.coords.latitude;
   let y = position.coords.longitude;
   let Api = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${x}&longitude=${y}`;
   FeachLocationApi(Api);
 }
+// call api to get the city
 function FeachLocationApi(Api) {
   fetch(Api)
     .then((res) => res.json())
@@ -26,11 +29,11 @@ function FeachLocationApi(Api) {
   FeachWeatherApi();
 }
 
-
 //kelvin to celcious. 1 Kelvin is equal to -272.15 Celsius.
 function convertion(val) {
   return (val - 273).toFixed(0);
 }
+// button event when click
 btn.addEventListener("click", function () {
   FeachWeatherApi();
 });
@@ -57,6 +60,10 @@ function FeachWeatherApi() {
       description.innerHTML = `${descrip}`;
       wind.innerHTML = `${wndspd} km/h`;
       hum.innerHTML = `${humidity} % `;
-      locationIcon.innerHTML = `<img src="/icons/${icon}.png">`;
+      locationIcon.src = `/icons/${icon}.png`;
     });
 }
+
+window.addEventListener("load", (event) => {
+  getLocation();
+});
