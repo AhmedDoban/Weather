@@ -1,58 +1,71 @@
 <html lang="en">
 
 <head>
+  <!-------------------Meta Files--------------------->
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather App</title>
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/normalize.css" rel="stylesheet" />
   <meta content="Weather" name="description" />
   <meta content="Weather" name="keywords" />
+  <!-------------------title--------------------->
+  <title>Weather </title>
+  <!-------------------Css--------------------->
+  <link href="css/normalize.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
   <link href="icons/01d.png" rel="icon" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
   <div class=" home">
+    <!------------------  container ------------------->
+
     <div class="container">
-      <div class="search">
+      <!------------------  search ------------------->
+
+      <div class="search" ata-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+        data-aos-offset="0">
         <div class="search-container">
           <button class="btn-search" id="add">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <input type="search" placeholder="City Name ? " class="input-search" id="cityinput"
-            onkeypress="FeachWeatherApi()" />
+          <input type="search" placeholder="City Name ? " class="input-search" id="cityinput" />
         </div>
       </div>
+      <!------------------  data container ------------------->
 
-      <div class="data-container">
-        <div class="box">
+      <div class="data-container" ata-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300"
+        data-aos-offset="0">
+        <p id="cityoutput"></p>
+        <div class="weather-icon">
+          <img src="icons/unknown.png" class="imgIcon" />
+          <h1 id="temp" class="temp"></h1>
+        </div>
+        <p id="description"></p>
+        <div class="other-discription">
           <div class="data">
-            <h1 id="temp" class="temp"></h1>
-            <p id="cityoutput"></p>
+            <p>Feels Like <span class="feelsLike"></span></p>
           </div>
-          <div class="weather-icon">
-            <img src="icons/unknown.png" class="imgIcon" />
+          <div class="data">
+            <p>Wind <span id="wind"></span></p>
           </div>
-        </div>
-        <div class="box">
-          <h1>Sky Conditions <i class="fa-solid fa-cloud-moon-rain"></i></h1>
-          <p id="description"></p>
-        </div>
-        <div class="box">
-          <h1>Wind Speed <i class="fa-solid fa-wind"></i></h1>
-          <p id="wind"></p>
-        </div>
-        <div class="box">
-          <h1>Humidity <i class="fa-brands fa-skyatlas"></i></h1>
-          <p id="humidity"></p>
+          <div class="data">
+            <p>Visabilty <span id="Visabilty"></span></p>
+          </div>
+          <div class="data">
+            <p>Humidity <span id="humidity"></span></p>
+          </div>
         </div>
       </div>
+      <!------------------  other-weather-container ------------------->
+
+      <div class="other-weather-container"></div>
     </div>
   </div>
   <!------------------  Script ------------------->
-  <script src="js/script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://kit.fontawesome.com/e39d260dfe.js" crossorigin="anonymous"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

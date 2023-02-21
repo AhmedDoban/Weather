@@ -1,31 +1,68 @@
 var inputval = document.querySelector("#cityinput");
 var btn = document.querySelector("#add");
+var date = document.querySelector(".date");
 var city = document.querySelector("#cityoutput");
-var descrip = document.querySelector("#description");
+var descrip = document.querySelector(".description");
 var temp = document.querySelector("#temp");
 var wind = document.querySelector("#wind");
+var feelsLike = document.querySelector(".feelsLike");
+var VisabiltyDATA = document.querySelector("#Visabilty");
 var hum = document.querySelector("#humidity");
-var locationIcon = document.querySelector(".weather-icon .imgIcon");
+var locationIcon = document.querySelector(".imgIcon");
+let otherData = document.querySelector(".other-weather-container");
+api = "https://api.openweathermap.org/data/2.5/forecast?";
 apiWeatherkey = "118d349a7305ac6c68aabac02ca9c657";
+
+let AllData = [];
 // Get location of the user
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition);
   }
 }
 // Get position of the user
 function showPosition(position) {
   let Latitude = position.coords.latitude;
   let Longitude = position.coords.longitude;
-  let Api = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${Latitude}&longitude=${Longitude}`;
-  FeachLocationApi(Api);
+  let LocalFunctionAPi =
+    api + `lat=${Latitude}&lon=${Longitude}&appid=${apiWeatherkey}`;
+  FeachLocationApi(LocalFunctionAPi);
 }
+
 // call api to get the city
-function FeachLocationApi(Api) {
-  fetch(Api)
+async function FeachLocationApi(Api) {
+  await fetch(Api)
     .then((res) => res.json())
-    .then((data) => (inputval.value = data.locality));
-  FeachWeatherApi();
+    .then((data) => {
+      inputval.value = data.city.name;
+      city.innerHTML = data.city.name;
+      locationIcon.src = `/icons/${data.list[0].weather[0].icon}.png`;
+      temp.innerHTML = `${convertion(data.list[0].main.temp)}`;
+      description.innerHTML = data.list[0].weather[0].description;
+      feelsLike.innerHTML = `${convertion(
+        data.list[0].main.feels_like
+      )}  &#176;`;
+      hum.innerHTML = `${data.list[0].main.humidity} %`;
+      wind.innerHTML = `${data.list[0].wind.speed} km/h`;
+      VisabiltyDATA.innerHTML = `${data.list[0].visibility / 1000} km/h`;
+      for (let i = 0; i < data.list.length; i++) {
+        AllData.push(data.list[i]);
+      }
+      for (let i = 8; i < AllData.length; i = i + 8) {
+        let src = `/icons/${AllData[i].weather[0].icon}.png`;
+        letSugDiscription = AllData[i].weather[0].description;
+        let MinHigh = convertion(AllData[i].main.temp);
+
+        DevGenerator(
+          DetDate(AllData[i].dt_txt),
+          src,
+          MinHigh,
+          letSugDiscription
+        );
+      }
+    });
+
+  // FeachWeatherApi();
 }
 
 //kelvin to celcious. 1 Kelvin is equal to -272.15 Celsius.
@@ -39,7 +76,6 @@ btn.addEventListener("click", function () {
 
 // weather Feach APi
 function FeachWeatherApi() {
-  getLocation();
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       inputval.value +
@@ -51,19 +87,102 @@ function FeachWeatherApi() {
       var nameval = data["name"];
       var descrip = data["weather"]["0"]["description"];
       var tempature = data["main"]["temp"];
+      var FeelsLike = data["main"]["feels_like"];
       var humidity = data["main"]["humidity"];
       var wndspd = data["wind"]["speed"];
+      var visibility = data["visibility"] / 1000;
       const icon = data["weather"]["0"]["icon"];
 
       city.innerHTML = `${nameval}`;
       temp.innerHTML = `${convertion(tempature)}  &#176;`;
+      feelsLike.innerHTML = `${convertion(FeelsLike)}  &#176;`;
       description.innerHTML = `${descrip}`;
       wind.innerHTML = `${wndspd} km/h`;
+      VisabiltyDATA.innerHTML = `${visibility} km/h`;
       hum.innerHTML = `${humidity} % `;
       locationIcon.src = `/icons/${icon}.png`;
     });
 }
 
-window.addEventListener("load", (event) => {
-  FeachWeatherApi();
+window.addEventListener(
+  "load",
+  (event) => {
+    getLocation();
+  },
+  [0]
+);
+inputval.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    FeachWeatherApi();
+  }
 });
+var days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+var month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+setTimeout(() => {
+  let currentDate = new Date();
+  let cDay = currentDate.getDay();
+  let CMonh = currentDate.getMonth();
+  date.innerHTML =
+    days[cDay] +
+    " ,  " +
+    month[CMonh] +
+    " ,  " +
+    currentDate.getDate() +
+    " ,  " +
+    currentDate.getFullYear();
+}, 1);
+
+// get Data for 5 days
+function DevGenerator(h3Value, imgSrc, pValue, h4Valu) {
+  let div = document.createElement("div");
+  div.classList.add("card");
+  let h3 = document.createElement("h3");
+  let h3Text = document.createTextNode(`${h3Value}`);
+  h3.appendChild(h3Text);
+  div.appendChild(h3);
+  let img = document.createElement("img");
+  img.src = imgSrc;
+  div.appendChild(img);
+  let p = document.createElement("p");
+  let pText = document.createTextNode(`${pValue}`);
+  p.appendChild(pText);
+  div.appendChild(p);
+  let h4 = document.createElement("h4");
+  let h4Text = document.createTextNode(`${h4Valu}`);
+  h4.appendChild(h4Text);
+  div.appendChild(h4);
+  div.dataset.aos = "zoom-in";
+  div.dataset.aos.easing = "ease-in-back";
+  div.dataset.aos.duration = "2000";
+  otherData.appendChild(div);
+}
+function DetDate(value) {
+  let currentDate = new Date(value);
+  let cDay = currentDate.getDay();
+  currentDate.getDate();
+  return days[cDay] + " " + currentDate.getDate();
+}
+AOS.init();
