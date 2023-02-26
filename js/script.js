@@ -165,8 +165,8 @@ inputval.addEventListener("keypress", (event) => {
 /**********************************
  *  # weather Feach APi by input
  * ********************************/
-function FeachWeatherApi() {
-  fetch(
+async function FeachWeatherApi() {
+  await fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       inputval.value +
       "&appid=" +
