@@ -88,17 +88,17 @@ body {
 }
 .search-container .input-search {
   height: 50px;
-  width: 50px;
   border-style: none;
   padding: 10px;
   font-size: 18px;
   letter-spacing: 2px;
   outline: none;
-  border-radius: 25px;
-  transition: var(--main-transition);
-  background-color: #f2ab06;
   padding-right: 40px;
   color: #fff;
+  width: 400px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 .search-container .input-search::placeholder {
   color: rgba(255, 255, 255, 0.5);
@@ -120,20 +120,6 @@ body {
   color: #ffffff;
   background-color: transparent;
   pointer-events: painted;
-}
-.search-container .btn-search:focus ~ .input-search {
-  width: 400px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
-}
-.search-container .input-search:focus {
-  width: 400px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
 /*ــــــــــــــــــــــــــــــــــــــــــــــ
  # Home data-container
@@ -220,8 +206,8 @@ body {
 .other-weather-container .card {
   width: 180px;
   background: rgba(135, 103, 124, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  /* backdrop-filter: blur(15.7px); */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
   padding: 10px;
   display: flex;
   justify-content: center;
