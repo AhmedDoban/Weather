@@ -214,14 +214,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .other-weather-container .card {
-  width: 150px;
+  width: 180px;
   background: rgba(135, 103, 124, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(15.7px);
+  /* backdrop-filter: blur(15.7px); */
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -230,6 +230,14 @@ body {
   gap: 10px;
   border-radius: 5px;
   transition: var(--main-transition);
+}
+@media (max-width: 605px) {
+  .other-weather-container .card {
+    width: 48.5%;
+  }
+  .other-weather-container .card:last-child {
+    width: 100%;
+  }
 }
 .other-weather-container .card h3 {
   font-size: 18px;
